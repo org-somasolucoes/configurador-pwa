@@ -1,0 +1,19 @@
+{
+  "name": "configurator-pwa",
+  "version": "1.0.0",
+  "description": "configura pwa",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js --host 0.0.0.0 --port 9226 --disableHostCheck true",
+    "start:dev": "nodemon --watch src/**/* --exec npm run start --host 0.0.0.0 --port 9226 --disableHostCheck true"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
