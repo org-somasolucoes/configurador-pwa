@@ -1,5 +1,6 @@
 const Chat = require('./class/Chat');
 const PWA = require('./class/PWA');
+const ImprimePwa = require('./class/Imprime');
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('database/pwadb.db');
 
@@ -24,8 +25,12 @@ const main = async () => {
     const chat = new Chat();
     chat.say("Bem-vindo ao configurador de pwa! Digite 'sair' para sair.");
     const pwa = new PWA(chat);
-    
+    const imprime = new ImprimePwa();
     let sair = false;
+
+    /**
+     * TODO: verificar permissão no local onde vai ser feita a impressao
+     */
 
     while (!sair) {
         await menu(chat);
@@ -38,11 +43,14 @@ const main = async () => {
                 await pwa.viewPwa();
                 break;
             case 'atualizar':
-                /**
-                 * Adicionar aki a forma de escrever
-                 * nisso vai chamar o MENU do escrever -> para um ou todos
-                 */
-                console.log('cheguei aki atualizar');
+                await pwa.viewPwa();
+                const id = await chat.question('Selecione um id para imprimir');
+                const obj = await pwa.getFormattedPwa(id);
+                chat.say('Preview');
+                chat.say(obj.PWA);
+                const confirmacao = await chat.question('Confirma a escrita do arquivo? (Y/n)');
+                if(confirmacao != 'n') imprime.imprimerPwa(obj.local , obj.PWA);
+                else chat.say('Cancelado!');
                 break;
             case 'deletar':
                 //! fix: verificar se existe 1

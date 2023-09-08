@@ -43,7 +43,7 @@ class PWA {
                 cor TEXT,
                 iconeUrl1 TEXT,
                 iconeTamanho1 TEXT,
-                iconeTipoPwa1 TEXT
+                iconeTipoImagem1 TEXT
                 )
             `);
         });        
@@ -83,7 +83,7 @@ class PWA {
         const confirmaAdiciona = await this.chat.question("Confirma?(Y/n)");
         if(confirmaAdiciona.toLowerCase() != 'n'){
             const insertQuery = 
-            `INSERT INTO pwas (localInstalacao, nome, nomeResumido, descricao, cor, iconeUrl1, iconeTamanho1, iconeTipoPwa1)
+            `INSERT INTO pwas (localInstalacao, nome, nomeResumido, descricao, cor, iconeUrl1, iconeTamanho1, iconeTipoImagem1)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
             // TODO: adicionar prepare (para remover comando sql)
             try {
@@ -143,9 +143,9 @@ class PWA {
         try {
             //TODO: remover sqli
             const pwaRaw = await new Promise((resolve, reject) => {
-                db.exec("SELECT * FROM pwas WHERE id = "+__id,function (info,err) {
+                db.all("SELECT * FROM pwas WHERE id = (?)",[__id],function (err,data) {
                     if(err) return reject('err');
-                    resolve(info);
+                    resolve(data[0]);
                 })
             })
             //TODO:verificar erro melhor
@@ -161,32 +161,32 @@ class PWA {
                 }
              */
             const template = `
-                {
-                    "name": "${pwaRaw.nome}",
-                    "short_name": "${pwaRaw.nomeResumido}",
-                    "start_url": "/",
-                    "display": "standalone",
-                    "description": "${pwaRaw.descricao}",
-                    "lang": "pt-BR",
-                    "dir": "auto",
-                    "theme_color": "${pwaRaw.corTema}",
-                    "scope": "/",
-                    "id": "/",
-                    "categories": [],
-                    "icons": [
-                    {
-                    "src": "${pwaRaw.iconeUrlPwa1}",
-                    "sizes": "${pwaRaw.iconeTamanhoPwa1}",
-                    "type": "${pwaRaw.iconeTipoPwa1}",
-                    "purpose": "maskable"
-                    }
-                    ],
-                    "shortcuts": [],
-                    "prefer_related_applications": false
-                    }
+{
+    "name": "${pwaRaw.nome}",
+    "short_name": "${pwaRaw.nomeResumido}",
+    "start_url": "/",
+    "display": "standalone",
+    "description": "${pwaRaw.descricao}",
+    "lang": "pt-BR",
+    "dir": "auto",
+    "theme_color": "${pwaRaw.cor}",
+    "scope": "/",
+    "id": "/",
+    "categories": [],
+    "icons": [
+    {
+    "src": "${pwaRaw.iconeUrl1}",
+    "sizes": "${pwaRaw.iconeTamanho1}",
+    "type": "${pwaRaw.iconeTipoImagem1}",
+    "purpose": "maskable"
+    }
+    ],
+    "shortcuts": [],
+    "prefer_related_applications": false
+}
                 `;
             return {
-                "local": pwaRaw.localInstalação,
+                "local": pwaRaw.localInstalacao,
                 "PWA": template
             }
         } catch (error) {
