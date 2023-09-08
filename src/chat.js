@@ -17,9 +17,9 @@ class Chat {
                 resolve(message); // Retorna a mensagem
             });
 
-            this.rl.on('close', () => {
-                resolve(null); // Sinaliza a saída caso o usuário feche o terminal
-            });
+            // this.rl.on('close', () => {
+            //     resolve(null); // Sinaliza a saída caso o usuário feche o terminal
+            // });
         });
     }
 
