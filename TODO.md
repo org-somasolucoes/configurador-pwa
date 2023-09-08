@@ -10,6 +10,7 @@ Sendo assim o motivo de não ter sido pensado mais sobre as formas de implementa
 
 Coisas posteriores para fazer:
 
-- Refacture da estrutura do menu (talvez uma forma mais facil de acessar o menu)
 - Adicionar cores para melhor visualização dos itens nos menus
+- Possivilidade de atualizar todos os PWA cadastrados.
+- Refacture da estrutura do menu (talvez uma forma mais facil de acessar o menu)
 - implementar um "wizard" para o pwa, permitindo que seja adicionado todos as possibilidades de propriedades para o manifest.json

@@ -5,21 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "node",
-            "request": "attach",
-            "name": "Docker: Attach to Node",
-            "remoteRoot": "/app"
-        },
-        {
-            "type": "node",
-            "request": "attach",
-            "name": "Debug: nodejs",
-            "port": 9229,
-            "restart": true,
-            "address": "0.0.0.0",
-            "autoAttachChildProcesses": true,
-            "showAsyncStacks": true,
-            "skipFiles": ["<node_internals>/**"]
-          }
+            "command": "npm run start:dev",
+            "name": "Run Dev",
+            "request": "launch",
+            "type": "node-terminal"
+        } 
     ]
 }

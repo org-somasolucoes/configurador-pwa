@@ -4,7 +4,7 @@
   "description": "configura pwa",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js --host 0.0.0.0 --port 9226 --disableHostCheck true",
+    "start": "node src/index.js",
     "start:dev": "nodemon --watch src/**/* --exec npm run start --host 0.0.0.0 --port 9226 --disableHostCheck true"
   },
   "keywords": [],
