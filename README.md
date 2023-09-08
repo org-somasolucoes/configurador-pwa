@@ -1,4 +1,4 @@
-# configurator-pwa
+# Configurador Pwa
  Configurador de PWA foi criado para automatizar a tarefa de cadastrar um pwa. O caso de uso mais notório é o fato de automatizar a tarefa de cadastrar varios num servidor novo.
 
 ## Requerimentos
