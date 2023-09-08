@@ -1,4 +1,4 @@
-const Chat = require('./chat');
+const Chat = require('./class/Chat');
 const PWA = require('./class/PWA');
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('database/pwadb.db');
